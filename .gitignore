@@ -1,3 +1,6 @@
+# Blog-project-2 files & folders
+blog_settings/settings/local.py
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
