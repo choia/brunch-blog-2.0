@@ -9,7 +9,7 @@ ALLOWED_HOSTS = ['brunch-blog.herokuapp.com',]
 
 INSTALLED_APPS += ['storages',]
 
-
+DATABASES= {}
 DATABASES['default'] = dj_database_url.config(default=os.environ['DATABASE_URL'])
 
 #AWS S3 Settings
