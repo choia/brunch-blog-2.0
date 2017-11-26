@@ -1,8 +1,11 @@
 from .base import *
 
+
 SECRET_KEY = os.environ['LOCAL_SECRET_KEY']
 
 DEBUG = True
+
+ALLOWED_HOSTS = ['127.0.0.1',]
 
 DATABASES = {
 'default': {
@@ -15,13 +18,17 @@ DATABASES = {
 	}
 }
 
+
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
-STATIC_URL = 'blog/static/'
-STATIC_ROOT = 'blog/staticfiles'
+STATIC_URL = '/blog/static/'
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'blog/staticfiles')
 STATICFILES_DIRS = [
-   os.path.join(BASE_DIR, 'blog/static'),
+   os.path.join(PROJECT_ROOT, 'blog/static'),
    ]
+
 
 #INSTALLED_APPS += ['debug_toolbar', ]
