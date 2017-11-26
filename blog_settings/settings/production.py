@@ -1,4 +1,5 @@
 from .base import *
+import dj_database_url
 
 
 SECRET_KEY = os.environ['SECRET_KEY']
@@ -9,6 +10,8 @@ ALLOWED_HOSTS = ['brunch-blog.herokuapp.com',]
 
 INSTALLED_APPS += ['storages',]
 
+
+DATABASES['default'] = dj_database_url.config()
 
 #AWS S3 Settings
 AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
