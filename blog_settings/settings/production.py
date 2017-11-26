@@ -11,6 +11,9 @@ INSTALLED_APPS += ['storages',]
 
 DATABASES= {}
 DATABASES['default'] = dj_database_url.config(default=os.environ['DATABASE_URL'])
+# db_from_env = dj_database_url.config()
+# DATABASES['default'].update(db_from_env)
+
 
 #AWS S3 Settings
 AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
