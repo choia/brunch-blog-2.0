@@ -30,5 +30,7 @@ STATICFILES_DIRS = [
    os.path.join(PROJECT_ROOT, 'blog/static'),
    ]
 
+MEDIA_URL = '/blog/media/'
+MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'blog/mediafiles')
 
 #INSTALLED_APPS += ['debug_toolbar', ]
