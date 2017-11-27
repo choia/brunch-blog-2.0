@@ -18,11 +18,11 @@ DATABASES['default'] = dj_database_url.config(default=os.environ['DATABASE_URL']
 AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
 AWS_ACCESS_KEY_ID 		= os.environ['AWS_ACCESS_KEY_ID']
 AWS_SECRET_ACCESS_KEY   = os.environ['AWS_SECRET_ACCESS_KEY']
-# STATICFILES_STORAGE 	= 'storages.backends.s3boto3.S3Boto3Storage'
 AWS_S3_CUSTOM_DOMAIN 	= '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
-# AWS_S3_URL 				= '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
-# STATIC_URL = AWS_S3_URL + '/static/'
+
 STATICFILES_LOCATION	= 'static'
 STATICFILES_STORAGE 	= 'blog_settings.s3.aws_storages.StaticStorage'
 
-
+ 
+MEDIAFILES_LOCATION		= 'media'
+DEFAULT_FILE_STORAGE	= 'blog_settings.s3.aws_storages.MediaStorage'
