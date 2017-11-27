@@ -22,6 +22,7 @@ AWS_SECRET_ACCESS_KEY   = os.environ['AWS_SECRET_ACCESS_KEY']
 STATICFILES_STORAGE 	= 'storages.backends.s3boto3.S3Boto3Storage'
 AWS_S3_CUSTOM_DOMAIN 	= '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 
+STATIC_URL = AWS_S3_CUSTOM_DOMAIN + '/static/'
 
 # Markdownx Settings
 MARKDOWNX_MEDIA_PATH = datetime.now().strftime('markdownx/%Y/%m/%d')
