@@ -1,7 +1,6 @@
 # Blog-project-2 files & folders
 blog_settings/settings/local.py
 blog/staticfiles/
-blog/migrations/*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
