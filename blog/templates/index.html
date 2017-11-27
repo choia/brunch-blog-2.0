@@ -1,6 +1,40 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h2>Hello!</h2>
+{% for query in queryset %}
+
+<div class="row">
+<div class="col-md-8">
+	<div class="title">
+	  <a href="{{ query.get_absolute_url }}"><strong>{{ query.title }}</strong></a>
+	  <small>{% if query.draft %}<span class="custom-draft"> Draft</span>{% endif %}</small>
+	</div>
+	</br><p>{{ query.get_html|striptags|truncatechars_html:185 }}</p>
+	<div class="label-text-color">	  
+	  <span class="label-text-color">Post by </span>
+      <span class="label label-primary">{{ query.user.get_full_name }}</span>
+      <!-- <span class="label label-default">{{ query.date_added|date:'M d, Y' }}</span> -->
+      <span class="label label-success">{{ query.publish|date:'M d, Y' }}</span>
+      <span class="label label-danger">{{ query.categories }}</span>
+	</div>	
+</div> <!-- col-md-9 -->
+<div class="col-md-2 col-custom">
+  {% if query.image %}
+  <img src="{{ query.image.url }}" class="img-responsive" alt="image" />
+  {% endif %}
+</div>
+</div> <!-- row -->
+<hr class="hr-custom">
+{% endfor %}
+	<div class="pagination">
+	    <span class="step-links">
+	        {% if queryset.has_previous %}
+	        <a href="?page={{ queryset.previous_page_number }}"><span class="label-page label-danger">Prev</span></a>	       
+	        {% endif %}	        
+	        {% if queryset.has_next %}
+	        <a href="?page={{ queryset.next_page_number }}"><span class="label-page label-info">Next</span></a>
+	        {% endif %}	     
+	    </span>
+	</div>
 
 {% endblock content %}
