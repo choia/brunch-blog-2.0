@@ -1,7 +1,9 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.urls import reverse
 from django.utils import timezone
 from markdownx.models import MarkdownxField
+from markdownx.utils import markdownify
 
 
 class PostManager(models.Manager):
@@ -31,3 +33,39 @@ class Post(models.Model):
 
 	def __str__(self):
 		return self.title
+
+
+	def get_absolute_url(self):
+		return reverse("blog:post_detail", kwargs={"id": self.id})
+
+
+	def get_html(self):
+		return markdownify(self.content)
+
+
+	def get_next(self):
+		next_id = Post.objects.filter(id__gt=self.id)
+		if next_id:
+			return next_id.first()
+		return False
+
+	
+	def get_next_draft(self):
+		next_id = Post.objects.filter(id__gt=self.id).exclude(draft=True)
+		if next_id:
+			return next_id.first()
+		return False
+
+
+	def get_prev(self):
+		prev_id = Post.objects.filter(id__lt=self.id).order_by('-id')			
+		if prev_id:
+			return prev_id.first()
+		return False
+
+
+	def get_prev_draft(self):
+		prev_id = Post.objects.filter(id__lt=self.id).order_by('-id').exclude(draft=True)
+		if prev_id:
+			return prev_id.first()
+		return False			

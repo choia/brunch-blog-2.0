@@ -43,7 +43,11 @@ INSTALLED_APPS = [
     'blog',
     # Third Party Application
     'markdownx',
+    'markdownify',
+    'crispy_forms',
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -126,4 +130,5 @@ USE_TZ = True
 # STATIC_URL = '/static/'
 
 # Markdownx Settings
+
 MARKDOWNX_MEDIA_PATH = datetime.now().strftime('markdownx/%Y/%m/%d')
