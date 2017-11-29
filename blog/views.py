@@ -1,8 +1,9 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.contrib import messages
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from .forms import PostForm
 from .models import Post
@@ -86,10 +87,11 @@ def post_update(request, id=None):
 
 '''Delete Post Page'''
 @login_required
-def post_delete(request):
-	context = {}
-
-	return render(request, 'delete.html', context)
+def post_delete(request, id=None):
+	instance = get_object_or_404(Post, id=id)
+	instance.delete()
+	messages.success(request, "Successfully deleted")
+	return redirect('blog:post_home')
 
 
 '''Logout the user'''
